@@ -12,7 +12,10 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body>
+    
+</body>
+<div class="bg-gray-100 text-gray-900">
     <div class="flex h-screen">
         <!-- Sidebar -->
         <div class="w-1/4 bg-white shadow-lg p-4">
@@ -22,15 +25,13 @@
                 <div class="border rounded-lg shadow-md p-4 mb-4 cursor-pointer">
                     <p class="text-sm">용산구</p>
                     <p class="font-bold">남산타워 야경투어</p>
-                    <div class="bg-gray-200 h-32 mt-2"></div>
+                    <img src="남산타워.jfif" alt="Description" h-32 mt-2></div>
                 </div>
-            </div>
-            <div>
                 <h2 class="text-lg font-semibold">부산</h2>
                 <div class="border rounded-lg shadow-md p-4 cursor-pointer">
                     <p class="text-sm">수영구</p>
                     <p class="font-bold">광안리 해수욕장</p>
-                    <div class="bg-gray-200 h-32 mt-2"></div>
+                    <img src="광안리.jfif" alt="Description" h-32 mt-2></div>
                 </div>
             </div>
         </div>
@@ -40,11 +41,11 @@
                 <a href="#" class="text-blue-500">Login</a>
             </div>
             <div class="flex-1 p-4 overflow-y-auto">
-                <p class="text-lg font-semibold">2024년09월29일</p>
-                <div class="border rounded-lg p-4 mb-4">
+                <p class="text-lg font-semibold">2024년09월29일</p> <!-- 오늘 날짜 출력하는 자바스크립트 추가 -->
+                <div class="border rounded-lg p-4 mb-4" style="width: 50%; height: 150px;">
                     <p class="font-bold">어디로 떠날까?</p>
                 </div>
-                <div class="border rounded-lg p-4 h-64 overflow-y-auto">
+                <div class="border rounded-lg p-4 h-64 overflow-y-auto"> <!-- 입력받은 텍스트를 출력해주는 기능 -->
                     <!-- Chat room content will appear here -->
                 </div>
             </div>
@@ -65,5 +66,5 @@
             input.value = '';
         });
     </script>
-</body>
+</div>
 </html>
