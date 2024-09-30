@@ -1,0 +1,45 @@
+.user-message {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.user-message .message-box {
+    background-color: #dddddd;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    word-wrap: break-word;
+}
+
+.user-message .message-box p{
+    color: #000000;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+}
+
+.opponent-message {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.opponent-message .message-box {
+    background-color: #5070ff;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    word-wrap: break-word;
+}
+
+.opponent-message .message-box p{
+    color: #ffffff;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+}
+
+#chat-container {
+    height: 70%;
+}
