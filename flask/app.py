@@ -1,29 +1,46 @@
-from flask import Flask, request, jsonify, render_template  # render_template 추가
-import openai
+from flask import Flask, request, jsonify, render_template
 import os
-from dotenv import load_dotenv
-
-# .env 파일에서 환경 변수 로드
-load_dotenv()
-
-# 환경 변수에서 API 키 가져오기
-openai.api_key = os.getenv("OPENAI_API_KEY")
+import openai
 
 app = Flask(__name__)
 
+# GPT API 키 설정 (여기서는 환경변수나 설정 파일에서 API 키를 불러와야 함)
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 @app.route('/')
-def home():
-    return render_template('index.html')  # index.html 렌더링
+def index():
+    return render_template('index.html')
 
 @app.route('/send_message', methods=['POST'])
 def send_message():
     user_message = request.json.get('message')
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": user_message}]
+
+    # GPT 모델에 사용자 메시지 분석 요청
+    response = openai.Completion.create(
+        model="gpt-4",
+        prompt=f"사용자가 '{user_message}'라고 했을 때, 여행지(destination), 기간(duration), 인원 수(peopleCount), "
+               f"테마(theme), 다음 활동(nextActivity)을 추출해 주세요.",
+        max_tokens=150
     )
-    bot_message = response['choices'][0]['message']['content']
-    return jsonify({'response': bot_message})
+
+    gpt_response = response['choices'][0]['text'].strip()
+
+    # GPT 응답을 분석해 필요한 정보를 추출
+    result = {
+        "duration": extract_info(gpt_response, 'duration'),
+        "destination": extract_info(gpt_response, 'destination'),
+        "theme": extract_info(gpt_response, 'theme'),
+        "peopleCount": extract_info(gpt_response, 'peopleCount'),
+        "nextActivity": extract_info(gpt_response, 'nextActivity')
+    }
+
+    return jsonify(result)
+
+def extract_info(text, key):
+    # GPT의 응답에서 원하는 키워드 정보를 추출하는 함수
+    if key in text:
+        return text.split(f"{key}:")[1].split('\n')[0].strip()
+    return None
 
 if __name__ == '__main__':
     app.run(debug=True)
