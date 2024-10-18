@@ -35,14 +35,20 @@
                 </div>
             </div>
         </div>
+
         <!-- Main Content -->
-        <div class="flex-1 p-4">
-            <div id="chat-container">
-                
+        <div class="flex-1 p-4 flex flex-col">
+            <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4">
+                <!-- 채팅 메시지들이 여기에 추가됩니다 -->
             </div>
-            <div class="flex">
-                <input type="text" id="chat-input" class="flex-1 border rounded-lg p-2" placeholder="메시지를 입력하세요..." />
-                <button onclick="sendMessage()" class="ml-2 bg-blue-500 text-white rounded-lg p-2">전송</button>
+            <div class="flex items-center mt-2">
+                <input type="text" id="chat-input" 
+                    class="flex-1 border border-gray-300 rounded-lg p-2" 
+                    placeholder="메시지를 입력하세요..." />
+                <button onclick="sendMessage()" 
+                    class="ml-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2">
+                    전송
+                </button>
             </div>
         </div>
     </div>

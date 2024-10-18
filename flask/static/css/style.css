@@ -1,45 +1,76 @@
-.user-message {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-}
-
-.user-message .message-box {
-    background-color: #dddddd;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    word-wrap: break-word;
-}
-
-.user-message .message-box p{
-    color: #000000;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
-}
-
-.opponent-message {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-}
-
-.opponent-message .message-box {
-    background-color: #5070ff;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    word-wrap: break-word;
-}
-
-.opponent-message .message-box p{
-    color: #ffffff;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
-}
-
+/* 채팅 메시지 컨테이너 */
 #chat-container {
-    height: 70%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 기본 메시지 스타일 */
+.message {
+    max-width: 80%;  /* 메시지의 최대 너비 조정 */
+    min-width: 1px;  /* 최소 너비 설정 */
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+/* 줄바꿈 처리를 위한 스타일 */
+.message pre {
+    margin: 0;
+    font-family: inherit; /* 기존 폰트 스타일 유지 */
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap; /* 줄바꿈과 공백을 모두 반영 */
+    word-wrap: break-word;
+}
+
+
+/* 사용자 메시지 */
+.user-message {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+    border-bottom-right-radius: 0;
+}
+
+/* 챗봇 메시지 */
+.bot-message {
+    align-self: flex-start;
+    background-color: #e0e0e0;
+    color: black;
+    border-bottom-left-radius: 0;
+}
+
+/* 입력 필드 스타일 */
+input[type="text"] {
+    width: 90%;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* 전송 버튼 스타일 */
+button {
+    width: 10%;
+    height: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
