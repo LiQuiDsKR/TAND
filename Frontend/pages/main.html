@@ -9,26 +9,43 @@
 
 <header>
   <span class="title">
-  <h1>TAND</h1>
+    <h1>TAND</h1>
   </span>
   <span class="minititle"> 
-    <h3> - 내 손안의 여행
-    </h3>
-    </span>
+    <h3>- 내 손안의 여행</h3>
+  </span>
 </header>
+
 <body>
   <div class="ipad">
-    <iframe src = "Ipad.html" height=100% width=100% style="border: none;" title="Ipad"></iframe>
+    <div class="ipad2" style="position: relative; width: 100%; height: 100%;">
+        <iframe src="Ipad.html" style="position: absolute; top: 5%; left: 3.4%; width: 93.2%; height: 90%; border: none; border-radius: 3%;"
+            title="ipad"></iframe>
+    </div>
+</div>
+
+
+  <!-- 버튼을 세로로 배열할 div -->
+  <div class="link">
+    <button class="btn" onclick="yeogi()">여기어때</button>
+    <button class="btn" onclick="skyscanner()">Sky Scanner</button>
+    <button class="btn" onclick="hotelscombined()">호텔스 컴바인</button>
+    <button class="btn" onclick="interpark()">인터파크 투어</button>
   </div>
 
-  <div class="link">
-    <button class="btn">여기어때</button>
-    <button class="btn">Sky Scanner</button>
-    <button class="btn">호텔스 컴바인</button>
-    <button class="btn">인터파크 투어</button>
-  </div>
-      </div>
-    </div>
-  </div>
+  <script>
+    function interpark() {
+      window.location.href = "https://travel.interpark.com";
+    }
+    function hotelscombined() {
+      window.location.href = "https://www.hotelscombined.co.kr";
+    }
+    function skyscanner() {
+      window.location.href = "https://www.skyscanner.co.kr";
+    }
+    function yeogi() {
+      window.location.href = "https://www.yeogi.com/";
+    }
+  </script>
 </body>
 </html>
