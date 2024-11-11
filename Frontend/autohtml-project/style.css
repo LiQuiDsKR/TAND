@@ -1,0 +1,246 @@
+.main-container,
+.main-container * {
+  box-sizing: border-box;
+}
+.main-container {
+  background: #ffffff;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.home-button {
+  background: #d9d9d9;
+  border-radius: 5px;
+  width: 133px;
+  height: 46px;
+  position: absolute;
+  left: 761px;
+  top: 1010px;
+  display: flex; /* 텍스트를 버튼 안에 맞추기 위해 flex 사용 */
+  justify-content: center; /* 텍스트를 가로 중앙 정렬 */
+  align-items: center; /* 텍스트를 세로 중앙 정렬 */
+  border: none; /* 기본 버튼 테두리 제거 */
+  cursor: pointer; /* 커서가 버튼 위에 있을 때 손가락 모양으로 변경 */
+  transition: background-color 0.3s ease; /* 배경색 전환 효과 추가 */
+}
+
+.home-button:hover {
+  background: #b6b6b6; /* 호버 시 배경색 변경 */
+}
+
+.home-text {
+  color: #000000;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0; /* 텍스트 주변 여백 제거 */
+  text-align: center; /* 텍스트를 버튼 안에서 중앙 정렬 */
+}
+
+.sidebar {
+  background: #3a59ff;
+  width: 726px;
+  height: 100vh;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.main-title {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AppleSdGothicNeoH00-Regular", sans-serif;
+  font-size: 100px;
+  font-weight: 400;
+  position: absolute;
+  left: 51px;
+  top: 21px;
+  width: 298px;
+  height: 141px;
+}
+.mini-title {
+  color: #ffffff;
+  text-align: left;
+  font-family: "AppleSdGothicNeoEb00-Regular", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 195px;
+  top: 159px;
+  width: 367px;
+  height: 76px;
+}
+.map-container {
+  background: #d9d9d9;
+  width: 560px;
+  height: 560px;
+  position: absolute;
+  left: 25px;
+  top: 482px;
+}
+.content-container {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #989898;
+  width: 1270px;
+  height: 800px;
+  position: absolute;
+  left: 615px;
+  top: 176px;
+  box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.25);
+}
+.schedule-box {
+  border-radius: 20px;
+  left: 50px;
+  top: 100px;
+  border: 1px solid #d9d9d9;
+  width: 850px;
+  height: 600px;
+  position: absolute;
+}
+.schedule-title {
+  color: #000000;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 35px;
+  position: absolute;
+  left: 50px;
+  top: 50px;
+}
+.recommend-section {
+  width: 266px;
+  height: 564px;
+}
+.trashcan-icon {
+  width: 44px;
+  height: 47px;
+  position: absolute;
+  left: 1819px;
+  top: 809px;
+  object-fit: cover;
+}
+.recommend-item {
+  width: 266px;
+  height: 52px;
+  position: relative;  /* 부모 요소에 상대 위치 설정 */
+  margin-bottom: 10px;  /* 두 항목 간의 간격을 주기 위해 margin 사용 */
+}
+
+.recommend-box {
+  position: absolute;  /* 절대 위치 설정 */
+  left: 55px;  /* content-container 안에서 왼쪽에 맞추기 위해 0으로 설정 */
+  top: 100px;  /* 첫 번째 박스 위치 */
+  background: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #bababa;
+  width: 266px;
+  height: 52px;
+  margin-bottom: 10px;
+}
+
+.move-box {
+  position: absolute;  /* 절대 위치 설정 */
+  left: 70px;  /* content-container 안에서 왼쪽에 맞추기 위해 0으로 설정 */
+  top: 130px;  /* 첫 번째 박스 위치 */
+  background: #d9d9d9;
+  border-radius: 5px;
+  width: 28px;
+  height: 28px;
+}
+.content-container:nth-child(1) .move-box {
+  top: 110px;  /* 첫 번째 박스 위치 */
+}
+
+
+.schedule-text {
+  position: absolute;
+  left: 110px;  /* content-container 안에서 왼쪽에 맞추기 위해 0으로 설정 */
+  top: 130px;  /* 첫 번째 박스 위치 */
+  color: #000000;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 20px;
+}
+.content-container:nth-child(1) .schedule-text {
+  top: 110px;  /* 첫 번째 박스 위치 */
+}
+
+.add-options {
+  position: absolute;  /* 절대 위치 설정 */
+  left: 250px;  /* content-container 안에서 왼쪽에 맞추기 위해 0으로 설정 */
+  bottom: 20px;  /* 첫 번째 박스 위치 */
+  width: 435px;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+}
+.add-note, .add-schedule {
+  position: relative;
+  display: flex;
+  align-items: center; /* 텍스트와 아이콘을 수직 중앙 정렬 */
+ 
+}
+.button-background {
+  display: flex; /* 텍스트를 버튼 안에 맞추기 위해 flex 사용 */
+  justify-content: center; /* 텍스트를 가로 중앙 정렬 */
+  align-items: center; /* 텍스트를 세로 중앙 정렬 */
+  border: none; /* 기본 버튼 테두리 제거 */
+  cursor: pointer; /* 커서가 버튼 위에 있을 때 손가락 모양으로 변경 */
+  transition: background-color 0.3s ease; /* 배경색 전환 효과 추가 */
+  background: #2d43be;
+  border-radius: 17px;
+  width: 210px;
+  height: 56px;
+}
+.button-background:hover {
+  background: #243492; /* 호버 시 배경색 변경 */
+}
+.button-text {
+  color: #000000;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 20px;
+}
+.add-icon{
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 15px;
+}
+
+.schedule-list {
+  width: 1190px;
+  height: 650px;
+}
+.day-schedule {
+  display: flex;
+  flex-direction: column;  /* 내부 요소를 세로로 정렬 */
+  align-items: center;     /* 중앙 정렬 */
+  width: 279px;
+  height: 186px;
+}
+.day-divider {
+  border: 1px solid #9b9b9b;
+  width: 1px;    /* 세로줄이므로 width를 1px로 설정 */
+  height: 464px; /* 원하는 세로 길이로 설정 */
+  position: absolute; /* 절대 위치 설정 */
+}
+.day-number {
+  color: #000000;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 20px;
+}
+.recommend-container{
+  border-radius: 20px;
+  right: 50px;
+  top: 100px;
+  background: #f1f1f1;
+  width: 300px;
+  height: 600px;
+  position: absolute;
+}
+.recommend-title {
+  color: #000000;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 25px;
+  position: absolute;
+  left: 30px;  /* content-container 안에서 왼쪽에 맞추기 위해 0으로 설정 */
+  top: 20px;  /* 첫 번째 박스 위치 */
+}
