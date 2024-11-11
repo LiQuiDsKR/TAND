@@ -43,7 +43,7 @@ header {
 
 /* 아이패드 스타일 */
 .ipad {
-    background-image: url('../img/ipad2.png'); /* ipad 배경 이미지 */
+    background-image: url('../image/ipad2.png'); /* ipad 배경 이미지 */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -170,13 +170,13 @@ button:hover {
 
 /* 이미지 배경 */
 .image-background1 {
-    background-image: url('../img/남산타워.jfif');
+    background-image: url('../image/남산타워.jfif');
     background-size: cover;
     background-position: center;
 }
 
 .image-background2 {
-    background-image: url('../img/광안리.jfif');
+    background-image: url('../image/광안리.jfif');
     background-size: cover;
     background-position: center;
 }
