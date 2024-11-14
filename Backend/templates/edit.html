@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAND - 여행 일정 편집</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/edit.css') }}">
+  <script src="{{ url_for('static', filename='js/edit.js') }}" defer></script>
+</head>
+<body>
+  <header>
+    <h1>TAND</h1>
+    <h3>- 내 손안의 여행</h3>
+  </header>
+
+  <main>
+    <div id="map-container">
+      <h2>여행 지도</h2>
+      <div id="map"></div>
+    </div>
+
+    <div id="schedule-container">
+      <h2>일정</h2>
+      <div id="days-container">
+        <!-- 일정이 날짜별로 동적으로 추가됨 -->
+      </div>
+      <div class="actions">
+        <button id="add-schedule-btn">+ 일정 추가하기</button>
+        <button id="add-memo-btn">+ 메모 추가하기</button>
+        <button id="confirm-btn">확정</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <button id="back-btn">처음으로</button>
+  </footer>
+
+  <script>
+    const scheduleData = {{ schedule_data|tojson }};
+  </script>
+</body>
+</html>
