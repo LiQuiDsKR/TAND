@@ -32,6 +32,63 @@
     </div>
   </main>
 
+  <div id="modal-overlay" class="modal-overlay hidden"></div>
+
+
+  <!-- 일정 추가 모달 -->
+  <div id="schedule-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>일정 추가</h2>
+      <form id="schedule-form">
+        <label for="schedule-title">이름 (필수)</label>
+        <input type="text" id="schedule-title" required>
+
+        <label for="schedule-description">설명 (선택)</label>
+        <textarea id="schedule-description"></textarea>
+
+        <label for="schedule-location">위치 정보 (필수)</label>
+        <input type="text" id="schedule-location" required>
+
+        <label for="schedule-start-time">시간 정보 (선택)</label>
+        <input type="time" id="schedule-start-time"> ~ 
+        <input type="time" id="schedule-end-time">
+
+        <label for="schedule-category">카테고리 (필수)</label>
+        <select id="schedule-category" required>
+          <option value="관광">관광</option>
+          <option value="식사">식사</option>
+          <option value="숙소">숙소</option>
+          <option value="교통">교통</option>
+          <option value="기타">기타</option>
+        </select>
+
+        <label for="schedule-tags">태그 (선택)</label>
+        <input type="text" id="schedule-tags" placeholder="쉼표로 태그 구분">
+
+        <div class="modal-actions">
+          <button type="submit">추가</button>
+          <button type="button" id="cancel-schedule">취소</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 메모 추가 모달 -->
+  <div id="memo-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>메모 추가</h2>
+      <form id="memo-form">
+        <label for="memo-title">제목 (필수)</label>
+        <input type="text" id="memo-title" required>
+
+        <div class="modal-actions">
+          <button type="submit">추가</button>
+          <button type="button" id="cancel-memo">취소</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <footer>
     <button id="back-btn">처음으로</button>
   </footer>

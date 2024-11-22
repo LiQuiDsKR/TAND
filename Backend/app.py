@@ -119,15 +119,6 @@ def send_message():
             "혹시 더 추가하고 싶은 내용이 있다면 얼마든지 추가해주세요.\n"
             "원하는 여행을 구체적으로 설명해주시면 보다 정확한 일정을 추천해드립니다!\n\n"
             "(기초 정보가 충분하다면, 다음 단계로 넘어가기 위해 '다음 단계'라고 채팅을 보내주세요.)\n\n"
-            "[여행 테마 예시]\n"
-            "- 관광지 위주\n"
-            "- 맛집 탐방\n"
-            "- SNS 및 사진 촬영\n"
-            "- 휴식과 호캉스\n\n"
-            "[필수 활동 예시]\n"
-            "- 유니버셜 스튜디오 재팬 방문하기\n"
-            "- 에펠탑 전망대에서 커피 마시기\n"
-            "- 제주도 한라산 정상 등반하기\n"
         )
 
         return jsonify({"message": final_message})
@@ -152,8 +143,9 @@ def generate_schedule():
             f"여행 기간: {user_duration}일\n"
             f"여행 테마: {user_theme}\n"
             f"필수 활동: {user_essential_activity}\n\n"
-            "위 정보를 바탕으로 하루에 2~3개의 일정 항목이 포함된 여행 일정을 생성해 주세요. "
+            "위 정보를 바탕으로 하루마다 식사 3끼, 여행 일정이 항목이 포함된 여행 일정을 생성해 주세요. "
             "각 일정 항목은 제목, 설명, 위치, 시작 시간, 종료 시간, 카테고리, 태그 정보를 포함해야 합니다. "
+            "각 여행 항목의 제목은 한국어로 작성해주세요."
             "결과는 JSON 형식으로 반환해주세요. JSON 형식 예시는 다음과 같습니다:\n\n"
             "{\n"
             "  \"days\": [\n"
@@ -183,7 +175,7 @@ def generate_schedule():
                 {"role": "user", "content": prompt}
             ],
             temperature=0.7,
-            max_tokens=1500
+            max_tokens=5000
         )
 
         gpt_response = response['choices'][0]['message']['content'].strip()
