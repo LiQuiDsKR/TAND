@@ -62,7 +62,7 @@ h3 {
 
 
 .ipad {
-  background-image: url('../img/ipad.png'); /* 배경 이미지 설정 */
+  background-image: url('../image/ipad.png'); /* 배경 이미지 설정 */
   background-size: cover;                  /* 이미지가 화면을 덮도록 설정 */
   background-position: center;             /* 이미지가 중앙에 위치하도록 설정 */
   background-repeat: no-repeat;            /* 이미지 반복 방지 */
