@@ -53,3 +53,30 @@ function sendMessage() {
         analyzeUserResponse(message);
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... 기존 코드 ...
+
+    document.querySelector('#chat-container').addEventListener('click', (e) => {
+        if (e.target.tagName === 'A' && e.target.textContent.includes('다음 단계')) {
+            e.preventDefault();
+            showLoadingOverlay();
+
+            fetch('/generate_schedule')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '/edit';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    });
+});
+
+function showLoadingOverlay() {
+    const loadingOverlay = document.getElementById('loading-overlay');
+    if (loadingOverlay) {
+        loadingOverlay.style.display = 'flex';
+    }
+}

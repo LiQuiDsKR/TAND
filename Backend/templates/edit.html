@@ -6,6 +6,7 @@
   <title>TAND - 여행 일정 편집</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/edit.css') }}">
   <script src="{{ url_for('static', filename='js/edit.js') }}" defer></script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtEz4mU_zPwt4ToEAgu_WZvi7n2pTG-Es&callback=initMap" ></script>
 </head>
 <body>
   <header>
@@ -47,7 +48,8 @@
         <textarea id="schedule-description"></textarea>
 
         <label for="schedule-location">위치 정보 (필수)</label>
-        <input type="text" id="schedule-location" required>
+        <div id="map-location-picker" style="width: 100%; height: 400px; margin-bottom: 10px;"></div>
+        <div id="location-display" style="margin-bottom: 10px;">위치를 선택하세요.</div>
 
         <label for="schedule-start-time">시간 정보 (선택)</label>
         <input type="time" id="schedule-start-time"> ~ 
@@ -84,6 +86,45 @@
         <div class="modal-actions">
           <button type="submit">추가</button>
           <button type="button" id="cancel-memo">취소</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 일정 수정 모달 -->
+  <div id="edit-schedule-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>일정 수정</h2>
+      <form id="edit-schedule-form">
+        <label for="edit-schedule-title">이름 (필수)</label>
+        <input type="text" id="edit-schedule-title" required>
+
+        <label for="edit-schedule-description">설명 (선택)</label>
+        <textarea id="edit-schedule-description"></textarea>
+
+        <label for="edit-schedule-location">위치 정보 (필수)</label>
+        <div id="edit-map-location-picker" style="width: 100%; height: 400px; margin-bottom: 10px;"></div>
+        <div id="edit-location-display" style="margin-bottom: 10px;">위치를 선택하세요.</div>
+
+        <label for="edit-schedule-start-time">시간 정보 (선택)</label>
+        <input type="time" id="edit-schedule-start-time"> ~ 
+        <input type="time" id="edit-schedule-end-time">
+
+        <label for="edit-schedule-category">카테고리 (필수)</label>
+        <select id="edit-schedule-category" required>
+          <option value="관광">관광</option>
+          <option value="식사">식사</option>
+          <option value="숙소">숙소</option>
+          <option value="교통">교통</option>
+          <option value="기타">기타</option>
+        </select>
+
+        <label for="edit-schedule-tags">태그 (선택)</label>
+        <input type="text" id="edit-schedule-tags" placeholder="쉼표로 태그 구분">
+
+        <div class="modal-actions">
+          <button type="submit">수정</button>
+          <button type="button" id="cancel-edit-schedule">취소</button>
         </div>
       </form>
     </div>

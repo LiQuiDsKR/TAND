@@ -115,10 +115,9 @@ def send_message():
         )
 
         final_message = (
-            f"{collected_info} 여행 계획의 틀이 모두 작성되었다면, 다음 단계로 넘어가겠습니다.\n"
-            "혹시 더 추가하고 싶은 내용이 있다면 얼마든지 추가해주세요.\n"
-            "원하는 여행을 구체적으로 설명해주시면 보다 정확한 일정을 추천해드립니다!\n\n"
-            "(기초 정보가 충분하다면, 다음 단계로 넘어가기 위해 '다음 단계'라고 채팅을 보내주세요.)\n\n"
+            f"{collected_info}여행 계획의 틀이 모두 작성되었다면, <a href='/edit' style='color: blue; text-decoration: underline;'>다음 단계</a>로 이동합니다.\n"
+            "추가하고 싶은 일정 내용을 더 이야기해주셔도 좋습니다.\n"
+            "원하는 여행을 구체적으로 설명해주시면, 보다 정확한 일정을 추천해드립니다!"
         )
 
         return jsonify({"message": final_message})
@@ -144,7 +143,7 @@ def generate_schedule():
             f"여행 테마: {user_theme}\n"
             f"필수 활동: {user_essential_activity}\n\n"
             "위 정보를 바탕으로 하루마다 식사 3끼, 여행 일정이 항목이 포함된 여행 일정을 생성해 주세요. "
-            "각 일정 항목은 제목, 설명, 위치, 시작 시간, 종료 시간, 카테고리, 태그 정보를 포함해야 합니다. "
+            "각 일정 항목은 제목, 설명, 위치(경도, 위도), 시작 시간, 종료 시간, 카테고리, 태그 정보를 포함해야 합니다. "
             "각 여행 항목의 제목은 한국어로 작성해주세요."
             "결과는 JSON 형식으로 반환해주세요. JSON 형식 예시는 다음과 같습니다:\n\n"
             "{\n"
@@ -156,7 +155,7 @@ def generate_schedule():
             "        {\n"
             "          \"title\": \"Activity 1\",\n"
             "          \"description\": \"설명\",\n"
-            "          \"location\": \"위치\",\n"
+            "          \"location\": {\"lat\": 37.5400456, \"lng\": 126.9921017},\n"
             "          \"start_time\": \"09:00\",\n"
             "          \"end_time\": \"11:00\",\n"
             "          \"category\": \"관광\",\n"
@@ -198,6 +197,11 @@ def save_schedule():
     print(data)  # 저장된 데이터 확인 (DB나 파일 저장 가능)
     return jsonify({"status": "success"})
 
+@app.route('/generate_schedule', methods=['GET'])
+def generate_schedule_endpoint():
+    global generated_schedule
+    generated_schedule = generate_schedule()  # 일정 생성
+    return jsonify({"success": True})
 
 if __name__ == '__main__':
     app.run(debug=True)
