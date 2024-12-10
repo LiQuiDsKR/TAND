@@ -1,0 +1,136 @@
+{
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-11-15",
+      "schedule_items": [
+        {
+          "title": "나이아가라 폭포 관광",
+          "description": "캐나다의 대표적인 관광지인 나이아가라 폭포를 둘러봅니다.",
+          "location": {"lat": 43.0828, "lng": -79.0742},
+          "start_time": "09:00",
+          "end_time": "12:00",
+          "category": "관광",
+          "tag": ["자연", "명소"]
+        },
+        {
+          "title": "나이아가라 근처 레스토랑 점심",
+          "description": "폭포 근처 레스토랑에서 식사를 즐깁니다.",
+          "location": {"lat": 43.0896, "lng": -79.0849},
+          "start_time": "12:30",
+          "end_time": "13:30",
+          "category": "식사",
+          "tag": ["음식", "한식"]
+        },
+        {
+          "title": "호숫가 산책",
+          "description": "근처 호수 주변을 따라 산책하며 여유로운 시간을 보냅니다.",
+          "location": {"lat": 43.0875, "lng": -79.0836},
+          "start_time": "14:00",
+          "end_time": "16:00",
+          "category": "휴식",
+          "tag": ["자연", "휴식"]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-16",
+      "schedule_items": [
+        {
+          "title": "CN 타워 방문",
+          "description": "토론토의 랜드마크 CN 타워에 올라 도시 전경을 감상합니다.",
+          "location": {"lat": 43.6426, "lng": -79.3871},
+          "start_time": "09:00",
+          "end_time": "11:00",
+          "category": "관광",
+          "tag": ["도시", "명소"]
+        },
+        {
+          "title": "세인트 로렌스 마켓 탐방",
+          "description": "토론토의 유명한 시장에서 다양한 먹거리와 기념품을 즐깁니다.",
+          "location": {"lat": 43.6487, "lng": -79.3716},
+          "start_time": "11:30",
+          "end_time": "13:00",
+          "category": "관광",
+          "tag": ["시장", "음식"]
+        },
+        {
+          "title": "로열 온타리오 박물관 관람",
+          "description": "캐나다의 역사와 문화유산을 배울 수 있는 박물관을 방문합니다.",
+          "location": {"lat": 43.6677, "lng": -79.3948},
+          "start_time": "14:00",
+          "end_time": "17:00",
+          "category": "관광",
+          "tag": ["역사", "문화"]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-17",
+      "schedule_items": [
+        {
+          "title": "휘슬러 스키 리조트 체험",
+          "description": "휘슬러 리조트에서 겨울 스포츠를 체험합니다.",
+          "location": {"lat": 50.1163, "lng": -122.9574},
+          "start_time": "09:00",
+          "end_time": "12:00",
+          "category": "체험",
+          "tag": ["스포츠", "자연"]
+        },
+        {
+          "title": "리조트에서 점심 식사",
+          "description": "리조트 내 레스토랑에서 여유롭게 점심을 즐깁니다.",
+          "location": {"lat": 50.1155, "lng": -122.9604},
+          "start_time": "12:30",
+          "end_time": "13:30",
+          "category": "식사",
+          "tag": ["음식", "휴식"]
+        },
+        {
+          "title": "휘슬러 마을 탐방",
+          "description": "휘슬러 마을을 걸으며 상점과 카페를 둘러봅니다.",
+          "location": {"lat": 50.1149, "lng": -122.9498},
+          "start_time": "14:00",
+          "end_time": "16:00",
+          "category": "관광",
+          "tag": ["마을", "쇼핑"]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-11-18",
+      "schedule_items": [
+        {
+          "title": "밴쿠버 스탠리 파크 방문",
+          "description": "밴쿠버의 유명한 스탠리 파크를 산책하며 자연을 감상합니다.",
+          "location": {"lat": 49.3043, "lng": -123.1443},
+          "start_time": "09:00",
+          "end_time": "11:00",
+          "category": "관광",
+          "tag": ["자연", "휴식"]
+        },
+        {
+          "title": "그랜빌 아일랜드 시장 탐방",
+          "description": "다양한 상점과 시장을 구경하며 간식을 즐깁니다.",
+          "location": {"lat": 49.2706, "lng": -123.1336},
+          "start_time": "11:30",
+          "end_time": "13:00",
+          "category": "관광",
+          "tag": ["시장", "음식"]
+        },
+        {
+          "title": "밴쿠버 아쿠아리움 관람",
+          "description": "스탠리 파크 근처에 위치한 아쿠아리움에서 해양 생물을 구경합니다.",
+          "location": {"lat": 49.3005, "lng": -123.1306},
+          "start_time": "14:00",
+          "end_time": "16:00",
+          "category": "관광",
+          "tag": ["동물", "가족"]
+        }
+      ]
+    }
+  ]
+}

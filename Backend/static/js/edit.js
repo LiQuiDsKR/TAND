@@ -24,8 +24,8 @@ window.initMap = function () {
   });
 };
 
-function updateLocationDisplay(location) {
-  const locationDisplay = document.getElementById('location-display');
+function updateLocationDisplay(location, displayId = 'location-display') {
+  const locationDisplay = document.getElementById(displayId);
   if (locationDisplay) {
     locationDisplay.textContent = `위도: ${location.lat}, 경도: ${location.lng}`;
   }
@@ -180,7 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
       schedule.days.push({ day: 1, schedule_items: [newSchedule] });
     }
 
+    schedule.days[0].schedule_items.forEach((item, i) => {
+      item.order = i;
+    });
+
     renderSchedule();
+    displayScheduleOnMap();
     closeModal(scheduleModal);
   });
 
@@ -225,9 +230,19 @@ document.addEventListener('DOMContentLoaded', () => {
       zoom: 15,
     });
 
-    new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: { lat: lat, lng: lng },
       map: map,
+    });
+
+    map.addListener('click', (event) => {
+      const location = event.latLng;
+      marker.setPosition(location);
+      selectedLocation = {
+        lat: location.lat(),
+        lng: location.lng(),
+      };
+      updateLocationDisplay(selectedLocation, 'edit-location-display');
     });
 
     editScheduleModal.classList.remove('hidden');
@@ -255,4 +270,58 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('cancel-edit-schedule').addEventListener('click', () => {
     closeModal(editScheduleModal);
   });
+
+  // 일정의 모든 위치를 지도에 표시하고 경로를 그리는 함수
+  function displayScheduleOnMap() {
+    console.log("일정 데이터:", schedule); // 전체 일정 데이터 로그
+    const mapElement = document.getElementById("map");
+    const map = new google.maps.Map(mapElement, {
+      center: { lat: 37.5400456, lng: 126.9921017 },
+      zoom: 10,
+    });
+
+    const scheduleLocations = [];
+    schedule.days.forEach(day => {
+      // 일정 항목을 order에 따라 정렬
+      const sortedItems = day.schedule_items.sort((a, b) => a.order - b.order);
+      sortedItems.forEach(item => {
+        console.log("일정 항목:", item); // 각 일정 항목 로그
+        if (item.location.lat && item.location.lng) {
+          const position = { lat: item.location.lat, lng: item.location.lng };
+          scheduleLocations.push(position);
+        } else {
+          console.warn("위치 정보가 없습니다:", item); // 위치 정보가 없는 경우 경고 로그
+        }
+      });
+    });
+    console.log("수집된 위치:", scheduleLocations); // 수집된 위치 로그
+
+    // 경로를 폴리라인으로 그리기
+    if (scheduleLocations.length > 1) {
+      console.log("폴리라인을 그립니다:", scheduleLocations); // 폴리라인을 그릴 위치 로그
+      const path = new google.maps.Polyline({
+        path: scheduleLocations,
+        geodesic: true,
+        strokeColor: "#FF0000",
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+      });
+
+      path.setMap(map);
+
+      // 경로의 중심으로 지도 이동
+      const bounds = new google.maps.LatLngBounds();
+      scheduleLocations.forEach(location => {
+        bounds.extend(location);
+      });
+      map.fitBounds(bounds); // 모든 위치를 포함하도록 지도 크기 조정
+    } else {
+      console.warn("폴리라인을 그릴 위치가 충분하지 않습니다."); // 위치가 부족한 경우 경고 로그
+    }
+
+    console.log("지도 초기화 완료:", map); // 지도 초기화 로그
+  }
+
+  // 일정 지도에 표시
+  displayScheduleOnMap();
 });

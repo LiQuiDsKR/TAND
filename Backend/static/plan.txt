@@ -1,0 +1,103 @@
+{
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-11-15",
+      "schedule_items": [
+        {
+          "title": "전주 한옥마을 탐방",
+          "description": "전통 한옥을 둘러보고 전통 문화를 체험합니다.",
+          "location": {"lat": 35.815, "lng": 127.15},
+          "start_time": "09:00",
+          "end_time": "12:00",
+          "category": "관광",
+          "tag": ["문화", "전통"]
+        },
+        {
+          "title": "전주 비빔밥 점심",
+          "description": "전주의 유명한 비빔밥을 맛봅니다.",
+          "location": {"lat": 35.816, "lng": 127.152},
+          "start_time": "12:30",
+          "end_time": "13:30",
+          "category": "식사",
+          "tag": ["음식", "한식"]
+        },
+        {
+          "title": "경기전 방문",
+          "description": "조선 왕조의 역사를 배울 수 있는 경기전을 방문합니다.",
+          "location": {"lat": 35.814, "lng": 127.153},
+          "start_time": "14:00",
+          "end_time": "16:00",
+          "category": "관광",
+          "tag": ["역사", "문화"]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-16",
+      "schedule_items": [
+        {
+          "title": "전주 남부시장 탐방",
+          "description": "전주의 전통 시장을 둘러보고 다양한 먹거리를 즐깁니다.",
+          "location": {"lat": 35.813, "lng": 127.154},
+          "start_time": "09:00",
+          "end_time": "11:00",
+          "category": "관광",
+          "tag": ["시장", "음식"]
+        },
+        {
+          "title": "전주 초코파이 만들기 체험",
+          "description": "전주의 특산품인 초코파이를 직접 만들어봅니다.",
+          "location": {"lat": 35.812, "lng": 127.155},
+          "start_time": "11:30",
+          "end_time": "13:00",
+          "category": "체험",
+          "tag": ["음식", "체험"]
+        },
+        {
+          "title": "전주 동물원 방문",
+          "description": "다양한 동물을 볼 수 있는 전주 동물원을 방문합니다.",
+          "location": {"lat": 35.811, "lng": 127.156},
+          "start_time": "14:00",
+          "end_time": "17:00",
+          "category": "관광",
+          "tag": ["동물", "가족"]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-17",
+      "schedule_items": [
+        {
+          "title": "전주 한지 공예 체험",
+          "description": "전통 한지를 이용한 공예 체험을 합니다.",
+          "location": {"lat": 35.810, "lng": 127.157},
+          "start_time": "09:00",
+          "end_time": "11:00",
+          "category": "체험",
+          "tag": ["공예", "전통"]
+        },
+        {
+          "title": "전주 국립박물관 관람",
+          "description": "전주의 역사와 문화를 배울 수 있는 국립박물관을 관람합니다.",
+          "location": {"lat": 35.809, "lng": 127.158},
+          "start_time": "11:30",
+          "end_time": "13:00",
+          "category": "관광",
+          "tag": ["역사", "문화"]
+        },
+        {
+          "title": "전주 전통 찻집에서의 휴식",
+          "description": "전통 찻집에서 차를 마시며 여유로운 시간을 보냅니다.",
+          "location": {"lat": 35.808, "lng": 127.159},
+          "start_time": "14:00",
+          "end_time": "15:30",
+          "category": "휴식",
+          "tag": ["차", "휴식"]
+        }
+      ]
+    }
+  ]
+}

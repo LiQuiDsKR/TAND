@@ -28,7 +28,7 @@
       <div class="actions">
         <button id="add-schedule-btn">+ 일정 추가하기</button>
         <button id="add-memo-btn">+ 메모 추가하기</button>
-        <button id="confirm-btn">확정</button>
+        <button id="confirm-btn" onclick="confirmSchedule()">확정</button>
       </div>
     </div>
   </main>
@@ -59,7 +59,7 @@
         <select id="schedule-category" required>
           <option value="관광">관광</option>
           <option value="식사">식사</option>
-          <option value="숙소">숙소</option>
+          <option value="숙소">���소</option>
           <option value="교통">교통</option>
           <option value="기타">기타</option>
         </select>
@@ -135,7 +135,31 @@
   </footer>
 
   <script>
-    const scheduleData = {{ schedule_data|tojson }};
+    const scheduleData = JSON.parse('{{ schedule_data|safe }}');
+
+    function confirmSchedule() {
+        // 서버에 일정 저장 요청 (필요시)
+        fetch('/save_schedule', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ /* 저장할 데이터 */ })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                // 일정 저장 후 finish 페이지로 이동
+                window.location.href = "/finish";
+            } else {
+                alert("일정 저장에 실패했습니다.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("서버에서 오류가 발생했습니다.");
+        });
+    }
   </script>
 </body>
 </html>

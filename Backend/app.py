@@ -189,7 +189,16 @@ def generate_schedule():
 
 @app.route('/edit')
 def edit():
-    return render_template('edit.html', schedule_data=generated_schedule)
+
+    # generated_schedule이 JSON으로 변환 가능한지 확인
+    try:
+        schedule_json = json.dumps(generated_schedule)
+    except TypeError as e:
+        print(f"JSON 변환 오류: {e}")
+        schedule_json = "{}"  # 오류 시 빈 JSON 반환
+
+    return render_template('edit.html', schedule_data=schedule_json)
+
 
 @app.route('/save_schedule', methods=['POST'])
 def save_schedule():
@@ -202,6 +211,10 @@ def generate_schedule_endpoint():
     global generated_schedule
     generated_schedule = generate_schedule()  # 일정 생성
     return jsonify({"success": True})
+
+@app.route('/finish')
+def finish():
+    return render_template('finish.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

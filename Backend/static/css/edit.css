@@ -136,8 +136,9 @@ footer {
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1001;
-  width: 400px;
+  width: 100%;
   border-radius: 10px;
+  max-width: 800px;
 }
 
 .modal.hidden {
@@ -148,6 +149,9 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
 }
 
 .modal-content h2 {
@@ -198,8 +202,28 @@ footer {
     height: auto;
 }
 
-#map-location-picker {
-    width: 100%;
-    height: 400px;
-    margin-bottom: 10px;
+#map-location-picker,
+#edit-map-location-picker {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="time"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#location-display,
+#edit-location-display {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
 }

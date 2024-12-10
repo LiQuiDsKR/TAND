@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAND - 일정 생성 완료</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/finish.css') }}">
+  <script src="{{ url_for('static', filename='js/finish.js') }}" defer></script>
+  <style>
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TAND</h1>
+    <h3>- 내 손안의 여행</h3>
+  </header>
+
+  <main>
+    <h2>일정 생성 완료 감사합니다!</h2>
+    <p>여행 일정을 성공적으로 생성하였습니다.</p>
+    <div class="share-buttons">
+      <button id="modalBtn">SNS로 공유하기</button>
+      <button onclick="showThankModal()">확인</button>
+    </div>
+  </main>
+
+  <footer>
+    <button onclick="location.href='/'">처음으로 돌아가기</button>
+  </footer>
+
+  <!-- 공유 모달 -->
+  <div id="shareModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="title"><h2>SNS로 공유</h2></div>
+      </div>
+      <div class="share">
+        <img class="facebook" src="{{ url_for('static', filename='image/facebook.png') }}" />
+        <img class="instagram" src="{{ url_for('static', filename='image/instagram.png') }}" />
+        <img class="kakao" src="{{ url_for('static', filename='image/kakao.png') }}" />
+        <img class="line" src="{{ url_for('static', filename='image/line.png') }}" />
+        <img class="twitter" src="{{ url_for('static', filename='image/twitter.png') }}" />
+      </div>
+      <button class="closeBtn" onclick="toggleShareModal()">확인</button>
+    </div>
+  </div>
+
+  <!-- 감사 모달 -->
+  <div id="thankModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="title"><h2>Thank You!</h2></div>
+      </div>
+      <div class="coment">
+        <h4>일정이 확정되었습니다. <br /> <br />
+        마이페이지에서 저장된 일정 확인이 가능합니다. <br /> <br />
+        이용해주셔서 감사합니다.</h4>
+        <img class="thank" src="{{ url_for('static', filename='image/thank.png') }}" />
+      </div>
+      <button class="closeBtn" onclick="toggleThankModal()">처음으로</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleShareModal() {
+      const modal = document.getElementById("shareModal");
+      modal.classList.toggle("show");
+    }
+
+    function toggleThankModal() {
+      const modal = document.getElementById("thankModal");
+      modal.classList.toggle("show");
+    }
+
+    function showThankModal() {
+      toggleThankModal();
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const modalBtn = document.getElementById("modalBtn");
+      modalBtn.addEventListener("click", toggleShareModal);
+    });
+  </script>
+</body>
+</html>
