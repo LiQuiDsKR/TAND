@@ -144,7 +144,8 @@ def generate_schedule():
             f"필수 활동: {user_essential_activity}\n\n"
             "위 정보를 바탕으로 하루마다 식사 3끼, 여행 일정이 항목이 포함된 여행 일정을 생성해 주세요. "
             "각 일정 항목은 제목, 설명, 위치(경도, 위도), 시작 시간, 종료 시간, 카테고리, 태그 정보를 포함해야 합니다. "
-            "각 여행 항목의 제목은 한국어로 작성해주세요."
+            "각 여행 항목의 제목, 태그는 한국어로 작성해주세요."
+            "카테고리는 반드시 관광, 식사, 숙소, 체험, 기타 중 하나입니다."
             "결과는 JSON 형식으로 반환해주세요. JSON 형식 예시는 다음과 같습니다:\n\n"
             "{\n"
             "  \"days\": [\n"
@@ -186,6 +187,20 @@ def generate_schedule():
     except Exception as e:
         print(f"일정 생성 중 오류 발생: {e}")
         return {"days": []}  # 오류 시 빈 일정 반환
+'''
+@app.route('/edit')
+def edit():
+    # plan.txt 파일 읽기
+    try:
+        with open('static/plan.txt', 'r', encoding='utf-8') as file:
+            schedule_data = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"파일 읽기 오류: {e}")
+        schedule_data = {"days": []}  # 오류 시 빈 일정 반환
+
+    # 템플릿에 일정 데이터 전달
+    return render_template('edit.html', schedule_data=json.dumps(schedule_data))
+'''
 
 @app.route('/edit')
 def edit():

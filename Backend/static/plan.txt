@@ -94,7 +94,7 @@
           "location": {"lat": 35.808, "lng": 127.159},
           "start_time": "14:00",
           "end_time": "15:30",
-          "category": "휴식",
+          "category": "기타",
           "tag": ["차", "휴식"]
         }
       ]

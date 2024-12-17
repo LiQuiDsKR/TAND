@@ -213,39 +213,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const editScheduleForm = document.getElementById('edit-schedule-form');
 
   function openEditModal(item) {
-    const title = item.querySelector('.item-title').textContent;
-    const description = item.querySelector('.item-description').textContent;
-    const startTime = item.querySelector('.item-time').textContent.split(' ~ ')[0];
-    const endTime = item.querySelector('.item-time').textContent.split(' ~ ')[1];
-    const lat = parseFloat(item.dataset.lat);
-    const lng = parseFloat(item.dataset.lng);
+    // schedule 객체에서 해당 항목 찾기
+    const index = item.dataset.index; // item의 데이터 인덱스 가져오기
+    const scheduleItem = schedule.days[0].schedule_items[index]; // schedule 객체에서 항목 가져오기
 
-    document.getElementById('edit-schedule-title').value = title;
-    document.getElementById('edit-schedule-description').value = description;
-    document.getElementById('edit-schedule-start-time').value = startTime;
-    document.getElementById('edit-schedule-end-time').value = endTime;
+    // 모달에 데이터 표시
+    document.getElementById('edit-schedule-title').value = scheduleItem.title; // 제목
+    document.getElementById('edit-schedule-description').value = scheduleItem.description; // 설명
+    document.getElementById('edit-schedule-start-time').value = scheduleItem.start_time; // 시작 시간
+    document.getElementById('edit-schedule-end-time').value = scheduleItem.end_time; // 종료 시간
+    document.getElementById('edit-schedule-category').value = scheduleItem.category; // 카테고리
+    //document.getElementById('edit-schedule-tags').value = scheduleItem.tags.join(', '); // 태그
 
+    const lat = scheduleItem.location.lat; // 위도
+    const lng = scheduleItem.location.lng; // 경도
+
+    // 지도 초기화
     const map = new google.maps.Map(document.getElementById('edit-map-location-picker'), {
-      center: { lat: lat, lng: lng },
-      zoom: 15,
+        center: { lat: lat, lng: lng },
+        zoom: 15,
     });
 
     const marker = new google.maps.Marker({
-      position: { lat: lat, lng: lng },
-      map: map,
+        position: { lat: lat, lng: lng },
+        map: map,
     });
 
     map.addListener('click', (event) => {
-      const location = event.latLng;
-      marker.setPosition(location);
-      selectedLocation = {
-        lat: location.lat(),
-        lng: location.lng(),
-      };
-      updateLocationDisplay(selectedLocation, 'edit-location-display');
+        const location = event.latLng;
+        marker.setPosition(location);
+        selectedLocation = {
+            lat: location.lat(),
+            lng: location.lng(),
+        };
+        updateLocationDisplay(selectedLocation, 'edit-location-display');
     });
 
-    editScheduleModal.classList.remove('hidden');
+    editScheduleModal.classList.remove('hidden'); // 모달 열기
   }
 
   editScheduleForm.addEventListener('submit', (e) => {
@@ -285,20 +289,20 @@ document.addEventListener('DOMContentLoaded', () => {
       // 일정 항목을 order에 따라 정렬
       const sortedItems = day.schedule_items.sort((a, b) => a.order - b.order);
       sortedItems.forEach(item => {
-        console.log("일정 항목:", item); // 각 일정 항목 로그
+        // console.log("일정 항목:", item); // 각 일정 항목 로그
         if (item.location.lat && item.location.lng) {
           const position = { lat: item.location.lat, lng: item.location.lng };
           scheduleLocations.push(position);
         } else {
-          console.warn("위치 정보가 없습니다:", item); // 위치 정보가 없는 경우 경고 로그
+          //console.warn("위치 정보가 없습니다:", item); // 위치 정보가 없는 경우 경고 로그
         }
       });
     });
-    console.log("수집된 위치:", scheduleLocations); // 수집된 위치 로그
+   //console.log("수집된 위치:", scheduleLocations); // 수집된 위치 로그
 
     // 경로를 폴리라인으로 그리기
     if (scheduleLocations.length > 1) {
-      console.log("폴리라인을 그립니다:", scheduleLocations); // 폴리라인을 그릴 위치 로그
+      // console.log("폴리라인을 그립니다:", scheduleLocations); // 폴리라인을 그릴 위치 로그
       const path = new google.maps.Polyline({
         path: scheduleLocations,
         geodesic: true,
@@ -319,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.warn("폴리라인을 그릴 위치가 충분하지 않습니다."); // 위치가 부족한 경우 경고 로그
     }
 
-    console.log("지도 초기화 완료:", map); // 지도 초기화 로그
+    // console.log("지도 초기화 완료:", map); // 지도 초기화 로그
   }
 
   // 일정 지도에 표시
