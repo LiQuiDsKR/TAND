@@ -51,6 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const schedule = scheduleData || { days: [] };
 
+  // 카테고리와 이미지 매핑
+  const categoryImages = {
+    관광: 'static/image/category/place.png',
+    식사: 'static/image/category/restaurant.png',
+    숙소: 'static/image/category/hotel.png',
+    체험: 'static/image/category/activity.png',
+    메모: 'static/image/category/memo.png',
+    기타: 'static/image/category/etc.png',
+  };
+
   function renderSchedule() {
     daysContainer.innerHTML = '';
 
@@ -61,12 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <h3>${day.day}일차</h3>
         <div class="schedule-items" data-day="${index}">
           ${day.schedule_items.map((item, i) => {
+            const imageUrl = categoryImages[item.category] || categoryImages['기타']; // 기본값 설정
             return `
               <div class="schedule-item" draggable="true" data-index="${i}" data-lat="${item.location.lat}" data-lng="${item.location.lng}">
-                <img src="https://via.placeholder.com/50" alt="이미지">
+                <img src="${imageUrl}" alt="이미지">
                 <div class="item-content">
                   <span class="item-title">${item.title}</span>
-                  <span class="item-time">${item.start_time} ~ ${item.end_time}</span>
                   <p class="item-description">${item.description}</p>
                 </div>
               </div>
@@ -168,10 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const newSchedule = {
       type: 'schedule',
       title: document.getElementById('schedule-title').value,
-      description: document.getElementById('schedule-description').value,
-      start_time: document.getElementById('schedule-start-time').value,
-      end_time: document.getElementById('schedule-end-time').value,
-      location: selectedLocation,
+      description: "",
+      location: { lat: 0, lng: 0 },
     };
 
     if (schedule.days.length > 0) {
@@ -179,10 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       schedule.days.push({ day: 1, schedule_items: [newSchedule] });
     }
-
-    schedule.days[0].schedule_items.forEach((item, i) => {
-      item.order = i;
-    });
 
     renderSchedule();
     displayScheduleOnMap();
@@ -193,14 +197,16 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     const newMemo = {
-      type: 'memo',
-      title: document.getElementById('memo-title').value,
+        type: 'memo',
+        title: document.getElementById('memo-title').value,
+        description: "",
+        location: { lat: 0, lng: 0 },
     };
 
     if (schedule.days.length > 0) {
-      schedule.days[0].schedule_items.push(newMemo);
+        schedule.days[0].schedule_items.push(newMemo);
     } else {
-      schedule.days.push({ day: 1, schedule_items: [newMemo] });
+        schedule.days.push({ day: 1, schedule_items: [newMemo] });
     }
 
     renderSchedule();
@@ -320,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       map.fitBounds(bounds); // 모든 위치를 포함하도록 지도 크기 조정
     } else {
-      console.warn("폴리라인을 그릴 위치가 충분하지 않습니다."); // 위치가 부족한 경우 경고 로그
+      console.warn("폴리라인을 그릴 위치가 충분하지 않습니다."); // 위치가 족한 경우 경고 로그
     }
 
     // console.log("지도 초기화 완료:", map); // 지도 초기화 로그
