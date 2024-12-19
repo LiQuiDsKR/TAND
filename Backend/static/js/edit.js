@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const schedule = scheduleData || { days: [] };
 
-  // 카테고리와 이미지 매핑
   const categoryImages = {
     관광: 'static/image/category/place.png',
     식사: 'static/image/category/restaurant.png',
@@ -71,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <h3>${day.day}일차</h3>
         <div class="schedule-items" data-day="${index}">
           ${day.schedule_items.map((item, i) => {
-            const imageUrl = categoryImages[item.category] || categoryImages['기타']; // 기본값 설정
+            const imageUrl = categoryImages[item.category] || categoryImages['기타'];
             return `
               <div class="schedule-item" draggable="true" data-index="${i}" data-lat="${item.location.lat}" data-lng="${item.location.lng}">
                 <img src="${imageUrl}" alt="이미지">
@@ -219,22 +218,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const editScheduleForm = document.getElementById('edit-schedule-form');
 
   function openEditModal(item) {
-    // schedule 객체에서 해당 항목 찾기
-    const index = item.dataset.index; // item의 데이터 인덱스 가져오기
-    const scheduleItem = schedule.days[0].schedule_items[index]; // schedule 객체에서 항목 가져오기
+    const index = item.dataset.index;
+    const scheduleItem = schedule.days[0].schedule_items[index];
 
-    // 모달에 데이터 표시
-    document.getElementById('edit-schedule-title').value = scheduleItem.title; // 제목
-    document.getElementById('edit-schedule-description').value = scheduleItem.description; // 설명
-    document.getElementById('edit-schedule-start-time').value = scheduleItem.start_time; // 시작 시간
-    document.getElementById('edit-schedule-end-time').value = scheduleItem.end_time; // 종료 시간
-    document.getElementById('edit-schedule-category').value = scheduleItem.category; // 카테고리
-    //document.getElementById('edit-schedule-tags').value = scheduleItem.tags.join(', '); // 태그
+    document.getElementById('edit-schedule-title').value = scheduleItem.title;
+    document.getElementById('edit-schedule-description').value = scheduleItem.description;
+    document.getElementById('edit-schedule-start-time').value = scheduleItem.start_time;
+    document.getElementById('edit-schedule-end-time').value = scheduleItem.end_time;
+    document.getElementById('edit-schedule-category').value = scheduleItem.category;
 
-    const lat = scheduleItem.location.lat; // 위도
-    const lng = scheduleItem.location.lng; // 경도
+    const lat = scheduleItem.location.lat;
+    const lng = scheduleItem.location.lng;
 
-    // 지도 초기화
     const map = new google.maps.Map(document.getElementById('edit-map-location-picker'), {
         center: { lat: lat, lng: lng },
         zoom: 15,
@@ -255,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLocationDisplay(selectedLocation, 'edit-location-display');
     });
 
-    editScheduleModal.classList.remove('hidden'); // 모달 열기
+    editScheduleModal.classList.remove('hidden');
   }
 
   editScheduleForm.addEventListener('submit', (e) => {
@@ -281,9 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModal(editScheduleModal);
   });
 
-  // 일정의 모든 위치를 지도에 표시하고 경로를 그리는 함수
   function displayScheduleOnMap() {
-    console.log("일정 데이터:", schedule); // 전체 일정 데이터 로그
     const mapElement = document.getElementById("map");
     const map = new google.maps.Map(mapElement, {
       center: { lat: 37.5400456, lng: 126.9921017 },
@@ -292,23 +285,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scheduleLocations = [];
     schedule.days.forEach(day => {
-      // 일정 항목을 order에 따라 정렬
       const sortedItems = day.schedule_items.sort((a, b) => a.order - b.order);
       sortedItems.forEach(item => {
-        // console.log("일정 항목:", item); // 각 일정 항목 로그
         if (item.location.lat && item.location.lng) {
           const position = { lat: item.location.lat, lng: item.location.lng };
           scheduleLocations.push(position);
-        } else {
-          //console.warn("위치 정보가 없습니다:", item); // 위치 정보가 없는 경우 경고 로그
         }
       });
     });
-   //console.log("수집된 위치:", scheduleLocations); // 수집된 위치 로그
 
-    // 경로를 폴리라인으로 그리기
     if (scheduleLocations.length > 1) {
-      // console.log("폴리라인을 그립니다:", scheduleLocations); // 폴리라인을 그릴 위치 로그
       const path = new google.maps.Polyline({
         path: scheduleLocations,
         geodesic: true,
@@ -319,19 +305,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       path.setMap(map);
 
-      // 경로의 중심으로 지도 이동
       const bounds = new google.maps.LatLngBounds();
       scheduleLocations.forEach(location => {
         bounds.extend(location);
       });
-      map.fitBounds(bounds); // 모든 위치를 포함하도록 지도 크기 조정
-    } else {
-      console.warn("폴리라인을 그릴 위치가 충분하지 않습니다."); // 위치가 족한 경우 경고 로그
+      map.fitBounds(bounds);
     }
-
-    // console.log("지도 초기화 완료:", map); // 지도 초기화 로그
   }
 
-  // 일정 지도에 표시
   displayScheduleOnMap();
 });
